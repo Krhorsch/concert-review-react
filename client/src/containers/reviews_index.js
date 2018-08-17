@@ -14,7 +14,7 @@ class ReviewsIndex extends Component {
 
   renderPosts() {
 
-    return _.map(this.props.reviews, review => {
+    return _.map(this.props.reviews.reviews, review => {
       return(
         <li className="list-group-item" key={review.id}>
           {review.artist}
@@ -42,7 +42,6 @@ class ReviewsIndex extends Component {
 
 
 function mapStateToProps(state) {
-  console.log(state)
   return { reviews: state.reviews }
 }
 
