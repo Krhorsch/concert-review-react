@@ -3,7 +3,6 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { fetchReviews } from '../actions'
 import { bindActionCreators } from 'redux'
-import { Navbar, Jumbotron, Button } from 'react-bootstrap';
 import _ from 'lodash';
 
 class ReviewsIndex extends Component {
@@ -17,20 +16,16 @@ class ReviewsIndex extends Component {
     return _.map(this.props.reviews.reviews, review => {
       return(
         <li className="list-group-item" key={review.id}>
-          {review.artist}
+          <Link to={`/reviews/${review.id}`}>{review.artist} - {review.venue} - {review.date}</Link>
         </li>
       )}
     )
   }
 
   render() {
+    const styles = {backgroundImage: "url('https://s3.pixers.pics/pixers/700/FO/60/32/90/71/700_FO60329071_74d47f9ccf286c38f19982640cc21127.jpg')"}
     return (
-      <div>
-        <div className="text-xs-right">
-          <Link className="btn btn-primary" to="/reviews/new">
-            Add a Review
-          </Link>
-        </div>
+      <div style={styles}>
         <h3>Reviews</h3>
         <ul className="list-group">
           {this.renderPosts()}
