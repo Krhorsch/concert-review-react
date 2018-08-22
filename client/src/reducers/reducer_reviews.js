@@ -3,8 +3,9 @@ import { FETCH_REVIEWS } from '../actions';
 import { LOADING_REVIEWS } from '../actions';
 import { FETCH_REVIEW } from '../actions';
 import { LOADING_REVIEW } from '../actions';
+import { ADD_REVIEW } from '../actions';
 
-export default function (state = {loading: false, reviews: {}}, action) {
+export default function (state = {loading: false, reviews: []}, action) {
   switch (action.type) {
 
     case LOADING_REVIEWS:
@@ -12,13 +13,17 @@ export default function (state = {loading: false, reviews: {}}, action) {
 
     case FETCH_REVIEWS:
       const reviews =  _.mapKeys(action.payload, "id")
-      return {loading: false, reviews: reviews}
+      return {loading: false, reviews: action.payload}
 
-      case LOADING_REVIEW:
+    case LOADING_REVIEW:
       return Object.assign({}, state, {loading: true})
 
-      case FETCH_REVIEW:
-        return {loading: false, review: action.payload}
+    case FETCH_REVIEW:
+      return {loading: false, review: action.payload}
+
+    case ADD_REVIEW:
+      console.log(action.payload)
+      return {}
 
     default:
     return state;
